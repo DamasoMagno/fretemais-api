@@ -24,7 +24,7 @@ public class VehicleService {
         List<Vehicle> vehicles;
 
         if(plateNumber != null && !plateNumber.isEmpty()){
-            vehicles = vehicleRepository.findVehicleByPlateNumber(plateNumber);
+            vehicles = vehicleRepository.findVehicleByPlateNumberContainingIgnoreCase(plateNumber);
         } else {
            vehicles = vehicleRepository.findAll();
         }

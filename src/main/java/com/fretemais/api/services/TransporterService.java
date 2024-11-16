@@ -25,7 +25,7 @@ public class TransporterService {
 
     public List<Transporter> listTransporters(String name){
         if(name != null && !name.isEmpty()){
-            return transporterRepository.findTransportersByName(name);
+            return transporterRepository.findTransportersByNameContainingIgnoreCase(name);
         }
 
         return transporterRepository.findAll();

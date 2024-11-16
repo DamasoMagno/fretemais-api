@@ -29,7 +29,7 @@ public class FreightService {
         List<Freight> freights;
 
         if (freightNumber != null && !freightNumber.isEmpty()) {
-            freights = freightRepository.findFreightByFreightNumber(freightNumber);
+            freights = freightRepository.findFreightByFreightNumberContainingIgnoreCase(freightNumber);
         } else {
             freights = freightRepository.findAll();
         }

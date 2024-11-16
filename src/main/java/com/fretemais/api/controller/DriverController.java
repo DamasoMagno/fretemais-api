@@ -18,8 +18,8 @@ public class DriverController {
     private DriverService driverService;
 
     @GetMapping
-    public List<Driver> listDrivers(@RequestParam(required = false) String name) {
-        return driverService.listDrivers(name);
+    public List<Driver> listDrivers(@RequestParam(required = false) String driverName) {
+        return driverService.listDrivers(driverName);
     }
 
     @PostMapping()

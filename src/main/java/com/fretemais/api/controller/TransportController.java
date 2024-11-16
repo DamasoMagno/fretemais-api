@@ -18,8 +18,8 @@ public class TransportController {
     private TransporterService transporterService;
 
     @GetMapping()
-    public ResponseEntity<List<Transporter>> transports(@RequestParam(required = false) String name) {
-        return ResponseEntity.status(HttpStatus.OK).body(transporterService.listTransporters(name));
+    public ResponseEntity<List<Transporter>> transports(@RequestParam(required = false) String transporterName) {
+        return ResponseEntity.status(HttpStatus.OK).body(transporterService.listTransporters(transporterName));
     }
 
     @PostMapping()

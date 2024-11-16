@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FreightRepository extends JpaRepository<Freight, Long> {
-    List<Freight> findFreightByFreightNumber(String freightNumber);
+    List<Freight> findFreightByFreightNumberContainingIgnoreCase(String freightNumber);
 }
