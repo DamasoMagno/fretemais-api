@@ -2,7 +2,6 @@ package com.fretemais.api.services;
 
 import com.fretemais.api.domain.Driver;
 import com.fretemais.api.dto.DriverDTO;
-import com.fretemais.api.dto.ListVehicleDTO;
 import com.fretemais.api.repository.DriverRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

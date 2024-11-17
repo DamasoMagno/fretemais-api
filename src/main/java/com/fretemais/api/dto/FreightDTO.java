@@ -1,6 +1,8 @@
 package com.fretemais.api.dto;
 
+import com.fretemais.api.enums.Cargo_Type;
 import com.fretemais.api.enums.Freight_Status;
+import com.fretemais.api.enums.Vehicle_Type;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +16,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 
 public class FreightDTO {
-    private String freightNumber;
     private Freight_Status status;
     private LocalDate freightDate;
+    private Cargo_Type cargoType;
+    private Vehicle_Type vehicleType;
+    private Float totalCost;
     private Long transporter_id;
     private Long driver_id;
 }

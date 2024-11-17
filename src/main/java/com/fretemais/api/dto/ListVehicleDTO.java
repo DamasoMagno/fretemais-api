@@ -14,13 +14,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ListVehicleDTO {
     private Long id;
-    private String vehicleName;  // Nome ou placa do veículo
+    private String plateNumber;
     private Vehicle_Type vehicleType;
     private TransporterDTO transporter;
 
     public ListVehicleDTO(Vehicle vehicle) {
         this.id = vehicle.getId();
-        this.vehicleName = vehicle.getPlateNumber();
+        this.plateNumber = vehicle.getPlateNumber();
         this.vehicleType = vehicle.getVehicleType();
 
         if (vehicle.getTransporter() != null) {
@@ -28,7 +28,6 @@ public class ListVehicleDTO {
         }
     }
 
-    // DTO para transportadora, incluindo apenas os campos necessários
     @Getter
     @Setter
     @NoArgsConstructor

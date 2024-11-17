@@ -18,8 +18,8 @@ public class FreightController {
     FreightService freightService;
 
     @GetMapping()
-    public ResponseEntity<List<ListFreightDTO>> freights(@RequestParam(required = false) String freightNumber) {
-        return ResponseEntity.status(HttpStatus.OK).body(freightService.listFreights(freightNumber));
+    public ResponseEntity<List<ListFreightDTO>> freights(@RequestParam(required = false) Long freightId) {
+        return ResponseEntity.status(HttpStatus.OK).body(freightService.listFreights(freightId));
     }
 
     @PostMapping()
@@ -35,7 +35,7 @@ public class FreightController {
     }
 
      @GetMapping("/{freightId}")
-     public ResponseEntity<ListFreightDTO> getFreight(@PathVariable Long freightId) {
+     public ResponseEntity<ListFreightDTO> getFreight(@PathVariable String freightId) {
         return ResponseEntity.status(HttpStatus.OK).body(freightService.getFreight(freightId));
      }
 

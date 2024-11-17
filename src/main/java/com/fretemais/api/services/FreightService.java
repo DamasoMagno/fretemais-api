@@ -5,7 +5,6 @@ import com.fretemais.api.domain.Freight;
 import com.fretemais.api.domain.Transporter;
 import com.fretemais.api.dto.FreightDTO;
 import com.fretemais.api.dto.ListFreightDTO;
-import com.fretemais.api.enums.Freight_Status;
 import com.fretemais.api.repository.DriverRepository;
 import com.fretemais.api.repository.FreightRepository;
 import com.fretemais.api.repository.TransporterRepository;
@@ -13,6 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +25,12 @@ public class FreightService {
     @Autowired
     private DriverRepository driverRepository;
 
-    public List<ListFreightDTO> listFreights(String freightNumber) {
+    public List<ListFreightDTO> listFreights(Long freightId) {
         List<Freight> freights;
 
-        if (freightNumber != null && !freightNumber.isEmpty()) {
-            freights = freightRepository.findFreightByFreightNumberContainingIgnoreCase(freightNumber);
+        if (freightId != null) {
+            System.out.println(freightId);
+            freights = freightRepository.findAllById(Collections.singleton(freightId));
         } else {
             freights = freightRepository.findAll();
         }
@@ -40,8 +41,8 @@ public class FreightService {
     }
 
 
-    public ListFreightDTO getFreight(Long freightId) {
-        Freight freight = freightRepository.findById(freightId).orElseThrow();
+    public ListFreightDTO getFreight(String freightId) {
+        Freight freight = freightRepository.findById(Long.valueOf(freightId)).orElseThrow();
         return new ListFreightDTO(freight);
     }
 
@@ -52,11 +53,15 @@ public class FreightService {
         Driver driver = driverRepository.findById(freightDTO.getDriver_id())
                 .orElseThrow(() -> new EntityNotFoundException("Driver not found"));
 
-        newFreight.setFreightNumber(freightDTO.getFreightNumber());
         newFreight.setFreightDate(freightDTO.getFreightDate());
-        newFreight.setStatus(Freight_Status.IN_ROUTE);
-        newFreight.setDriver(driver);
+        newFreight.setStatus(freightDTO.getStatus());
+        newFreight.setTotalCost(freightDTO.getTotalCost());
+        newFreight.setCargoType(freightDTO.getCargoType());
+        newFreight.setVehicleType(freightDTO.getVehicleType());
+        newFreight.setTotalCost(1200f);
+
         newFreight.setTransporter(transporter);
+        newFreight.setDriver(driver);
 
         freightRepository.save(newFreight);
     }
@@ -77,16 +82,24 @@ public class FreightService {
             freight.setDriver(driver);
         }
 
-        if (freightDTO.getFreightNumber() != null) {
-            freight.setFreightNumber(freightDTO.getFreightNumber());
-        }
-
         if (freightDTO.getFreightDate() != null) {
             freight.setFreightDate(freightDTO.getFreightDate());
         }
 
+        if (freightDTO.getTotalCost() != null) {
+            freight.setTotalCost(freightDTO.getTotalCost());
+        }
+
+        if (freightDTO.getVehicleType() != null) {
+            freight.setVehicleType(freightDTO.getVehicleType());
+        }
+
         if (freightDTO.getStatus() != null) {
             freight.setStatus(freightDTO.getStatus());
+        }
+
+        if (freightDTO.getCargoType() != null) {
+            freight.setCargoType(freightDTO.getCargoType());
         }
 
         freightRepository.save(freight);
