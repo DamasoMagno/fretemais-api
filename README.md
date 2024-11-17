@@ -8,7 +8,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
 - [Java 21](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
-- Um editor de código, como [IntelliJ IDEA](https://www.jetbrains.com/idea/) ou [VS Code](https://code.visualstudio.com/).
+- Um editor de código, como [IntelliJ IDEA](https://www.jetbrains.com/idea/) 
 
 ---
 
@@ -77,6 +77,7 @@ Aqui está um exemplo do `pom.xml` usado no projeto:
 spring.application.name=api
 
 ## Configurações do banco de dados
+
 ### Para este projeto, foi-se utilizado a plataformma Neontech que oferece um banco postgres on-line para ser utilizado de forma gratuita.
 spring.datasource.url=jdbc:postgresql://ep-lively-base-a5pilucr.us-east-2.aws.neon.tech/neondb?user=neondb_owner&password=vUgB6TEaQyz4&sslmode=require
 spring.datasource.username=neondb_owner
